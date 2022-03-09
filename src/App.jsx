@@ -2,6 +2,7 @@ import { useState } from 'react';
 import uuid from 'react-uuid';
 import './App.css';
 import Task from './components/Task';
+import User from './components/User';
 
 const initialValues = [
   {
@@ -17,7 +18,7 @@ const initialValues = [
   {
     id: uuid(),
     description: "Oil change",
-    isComplete: false,
+    isComplete: true,
   },
   {
     id: uuid(),
@@ -47,18 +48,19 @@ function App() {
 
   return (
     <div className="container">
+      <User />
       <h1>To Do List</h1>
       <div className='tasks'>
         <ul className="list-group">
-          {tasks.map((task, index) => (
-            <Task task={task} key={index} handleDelete={handleDelete}/>
+          {tasks.map((task) => (
+            <Task task={task} key={task.id} handleDelete={handleDelete}/>
           ))}
         </ul>
       </div>
-      <form>
+      <form onSubmit={handleSave}>
         <div className="input-group mb-3">
           <input type="text" className="form-control" placeholder="Don't forget!" aria-label="New Task" onChange={handleInput} value={newTask}/>
-          <button className="btn btn-outline-primary" type="button" id="save" onClick={handleSave}>+</button>
+          <button className="btn btn-outline-primary" type="submit" id="save">+</button>
         </div>
       </form>
     </div>
