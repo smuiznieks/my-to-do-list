@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import './User.css';
 
 const User = () => {
-  // const url = 'https://randomuser.me/api/?results=1';
-  const url = 'https://restcountries.com/v2/regionalbloc/eu'
+  const url = 'https://randomuser.me/api/?results=1';
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,8 +22,8 @@ const User = () => {
       try {
         let response = await axios(url);
         console.log(response.data);
-        // setUser(response.data.results[0]);
-        // setIsLoading(false);
+        setUser(response.data.results[0]);
+        setIsLoading(false);
       } catch {
         console.log('Error!!');
       }
