@@ -14,8 +14,8 @@ const reducer = (state, action) => {
   }
 }
 
-const Task = ({task, handleDelete}) => {
-  const [updatedTask, dispatch] = useReducer(reducer, task);
+const Task = (props) => {
+  const [updatedTask, dispatch] = useReducer(reducer, props.task);
   const [isEditMode, setIsEditMode] = useState(false);
   const [description, setDescription] = useState(updatedTask.description);
 
@@ -51,7 +51,7 @@ const Task = ({task, handleDelete}) => {
      
       <div className="btn-group" role="group" aria-label="Basic example">
         <button type="button" className="btn btn-primary" onClick={handleEditClicked}>{isEditMode ? 'Save' : 'Edit'}</button>
-        <button type="button" className="btn btn-danger" onClick={() => handleDelete(task.id)}>Delete</button>
+        <button type="button" className="btn btn-danger" onClick={() => props.handleDelete(props.task.id)}>Delete</button>
       </div>
     </li>
   )
