@@ -1,5 +1,5 @@
 .card {
   margin-top: 2em;
   margin-bottom: 1em;
-  height: 80px;
+  min-height: 90px;
 }

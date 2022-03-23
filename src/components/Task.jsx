@@ -6,7 +6,9 @@ const reducer = (state, action) => {
       console.log('Complete checkbox changed')
       return {...state, isComplete: !state.isComplete};
     case 'edit':
-      return {...state, description: 'this is a test'};
+      console.log(state);
+      console.log(action);
+      return {...state, description: action.updatedValue};
     default:
       return state;
   }
@@ -39,7 +41,7 @@ const Task = ({task, handleDelete}) => {
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
       {isEditMode ? (
-        <input type="text" className="form-control" value={updatedTask.description} onChange={handleInputChange}/>
+        <input type="text" className="form-control" value={description} onChange={handleInputChange}/>
       ) : (
         <span>
           <input className="form-check-input me-1" type="checkbox" checked={updatedTask.isComplete} onChange={handleCheckCompleted}/>
