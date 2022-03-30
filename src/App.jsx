@@ -1,7 +1,11 @@
+import { Routes, Route } from "react-router-dom";
 import uuid from 'react-uuid';
 import './App.css';
 import List from './components/List/List';
+import NavBar from "./components/NavBar/NavBar";
 import User from './components/User/User';
+import SignUp from "./components/Views/SignUp";
+import Welcome from "./components/Views/Welcome";
 
 const initialValues = [
   {
@@ -29,10 +33,22 @@ const initialValues = [
 function App() {
 
   return (
-    <div className="container">
-      <User />
-      <List startingValues={initialValues}/>
+    <div>
+      <NavBar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/home" element={
+            <div>
+              <User />
+              <List startingValues={initialValues}/>
+            </div>
+          } />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </div>
     </div>
+    
   );
 }
 

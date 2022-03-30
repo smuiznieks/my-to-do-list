@@ -19,6 +19,18 @@ const Task = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [description, setDescription] = useState(updatedTask.description);
 
+  // const [favoriteThings, setFavoriteThings] = useReducer({
+  //   cheese: 'Brie',
+  //   animal: 'cat',
+  //   city: 'Chicago'
+  // })
+  // setFavoriteThings((previousState) => {
+  //   return {
+  //     ...previousState,
+  //     animal: 'dog'
+  //   }
+  // })
+
   const handleCheckCompleted = (e) => {
     console.log(e.target.checked)
     dispatch({type: 'complete'});
