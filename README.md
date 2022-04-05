@@ -18,6 +18,31 @@
 
 ---
 
+## How to Host Your React App on GitHub Pages
+
+Follow [this](https://betterprogramming.pub/how-to-host-your-react-app-on-github-pages-for-free-919ad201a4cb#:~:text=When%20you've%20successfully%20deployed,is%20hosted%20on%20GitHub%20Pages.) tutorial.
+
+1. `npm install gh-pages --save-dev`
+2. Add the following property to `package.json` with your GitHub username and repository name:
+```
+"homepage": "https://username.github.io/repository-name"
+```
+3. Add the following `predeploy` and `deploy` commands to the scripts section of `package.json`:
+```
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+},
+```
+4. Execute `npm run deploy`
+5. Go to your GitHub repository and check the `Pages` section on the `Settings` page to verify that your app was deployed successfully. 
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
