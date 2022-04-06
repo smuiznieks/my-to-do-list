@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../Auth/AuthProvider';
 import './User.css';
 
 const User = () => {
   const url = 'https://randomuser.me/api/?results=1';
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  let auth = useAuth();
+  console.log(auth);
 
   useEffect(() => {
     console.log('Fetching user data...');
@@ -41,7 +44,7 @@ const User = () => {
       ) : (
         <div className="card-body">
           <h5 className="card-title">Welcome, {user.name.first} {user.name.last}</h5>
-          <h6 className="card-subtitle mb-2 text-muted">Username: {user.login.username}</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Username: {auth.user}</h6>
         </div>
       )}
     </div>

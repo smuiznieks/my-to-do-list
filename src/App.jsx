@@ -1,11 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import uuid from 'react-uuid';
 import './App.css';
+import { AuthProvider } from './components/Auth/AuthProvider';
 import List from './components/List/List';
 import NavBar from "./components/NavBar/NavBar";
 import User from './components/User/User';
 import SignUp from "./components/Views/SignUp";
 import Welcome from "./components/Views/Welcome";
+import RequireAuth from "./components/Auth/RequireAuth";
+import Login from "./components/Auth/Login";
 
 const initialValues = [
   {
@@ -33,22 +36,21 @@ const initialValues = [
 function App() {
 
   return (
-    <div>
+    <AuthProvider>
       <NavBar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/home" element={
-            <div>
+          <Route path="/" element={
+            <RequireAuth>
               <User />
               <List startingValues={initialValues}/>
-            </div>
+            </RequireAuth>
           } />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
-    </div>
-    
+    </AuthProvider>
   );
 }
 
