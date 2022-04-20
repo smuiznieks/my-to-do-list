@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import uuid from 'react-uuid';
 import './App.css';
 import { AuthProvider } from './components/Auth/AuthProvider';
@@ -6,7 +6,6 @@ import List from './components/List/List';
 import NavBar from "./components/NavBar/NavBar";
 import User from './components/User/User';
 import SignUp from "./components/Views/SignUp";
-import Welcome from "./components/Views/Welcome";
 import RequireAuth from "./components/Auth/RequireAuth";
 import Login from "./components/Auth/Login";
 
@@ -48,6 +47,9 @@ function App() {
           } />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/my-to-do-list" element={
+            <Navigate to="/"/>
+          } />
         </Routes>
       </div>
     </AuthProvider>
