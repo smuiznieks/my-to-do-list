@@ -1,4 +1,6 @@
 import { Navigate, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 import uuid from 'react-uuid';
 import './App.css';
 import { AuthProvider } from './components/Auth/AuthProvider';
@@ -33,6 +35,20 @@ const initialValues = [
 ];
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        let url = 'http://localhost:3001/tasks';
+        let response = await axios(url);
+        setTasks(response.data);
+      } catch {
+        console.log('Error!!');
+      }
+    }
+    fetchTasks();
+  }, [])
 
   return (
     <AuthProvider>
@@ -42,7 +58,7 @@ function App() {
           <Route path="/" element={
             <RequireAuth>
               <User />
-              <List startingValues={initialValues}/>
+              <List startingValues={tasks}/>
             </RequireAuth>
           } />
           <Route path="/signup" element={<SignUp />} />
