@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
+import { ref, set } from "firebase/database";
+import db from "./firebaseHelper";
 
 function Login() {
   let navigate = useNavigate();
@@ -23,6 +25,12 @@ function Login() {
       // user experience.
       navigate(from, { replace: true });
     });
+
+    const id = Math.random().toString().replace(".", "");
+    set(ref(db, "logs/" + id), {
+      loginTime: new Date().toString(),
+      username
+    }).then(() => console.log("Wrote to database!"));
   }
 
   return (
