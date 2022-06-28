@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        let url = 'http://localhost:3001/tasks';
+        let url = '/tasks';
         let response = await axios(url);
         setTasks(response.data);
       } catch {

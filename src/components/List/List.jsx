@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import uuid from 'react-uuid';
 import Task from '../Task/Task';
 
@@ -8,8 +9,7 @@ const List = ({startingValues}) => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    setTasks([...tasks, {id: uuid(), description: newTask}]);
-    setNewTask('');
+    saveNewTaskApi();
   }
 
   const handleInput = (e) => {
@@ -19,6 +19,20 @@ const List = ({startingValues}) => {
   const handleDeleteTaskById = (deleteId) => {
     let filtered = tasks.filter(x => x.id !== deleteId);
     setTasks(filtered);
+  }
+
+  const saveNewTaskApi = async () => {
+    try {
+      let response = await axios.post('/create', {
+        description: newTask,
+        userId: 101 // TO DO: update with real user id
+      });
+      console.log(response);
+      setTasks([...tasks, {id: uuid(), description: newTask}]);
+      setNewTask('');
+    } catch {
+      console.log('Error!');
+    }
   }
 
   return (
